@@ -6,18 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations as Rest; // alias pour toutes les annotations
-use AppBundle\Entity\Place;
+use AppBundle\Entity\Student;
 
-class UserController extends Controller
+class StudentController extends Controller
 {
-    public function getUsersAction(Request $request)
+    public function getStudentsAction()
     {
 
-        $students = $this->get('doctrine.orm.entity_manager')
-            ->getRepository('AppBundle:Student')
-            ->findAll();
+        $repository = $this->getDoctrine()->getRepository(Student::class);
 
+        $students = $repository->findAll();
 
         $formatted = array();
 
@@ -26,10 +24,6 @@ class UserController extends Controller
                 'id' => $student->getId(),
                 'firstname' => $student->getFirstname(),
                 'lastname' => $student->getLastname(),
-                'address1' => $student->getAddress1(),
-                'address2' => $student->getAddress2(),
-                'postcode' => $student->getPostcode(),
-                'city' => $student->getCity(),
                 'email' => $student->getEmail(),
                 'phone' => $student->getPhone()
             );
@@ -39,12 +33,12 @@ class UserController extends Controller
 
     }
 
-    public function getUserAction(Request $request)
+    public function getStudentAction(Request $request)
     {
 
-        $student = $this->get('doctrine.orm.entity_manager')
-            ->getRepository('AppBundle:Student')
-            ->find($request->get('id'));
+        $repository = $this->getDoctrine()->getRepository(Student::class);
+
+        $student = $repository->find($request->get('id'));
 
         if (empty($student)) {
             return new JsonResponse(['message' => "Student #{$request->get('id')} not found"], Response::HTTP_NOT_FOUND);
@@ -64,19 +58,19 @@ class UserController extends Controller
 
     }
 
-    public function deleteUserAction($id, Request $request)
+    public function deleteStudentAction(Request $request)
     {
-
+        return new JsonResponse(array('message' => "Student #{$request->get('id')} deleted"), Response::HTTP_OK);
     }
 
-    public function postUserAction(Request $request)
+    public function putStudentAction(Request $request)
     {
-
+        return new JsonResponse(array('message' => "Student #{$request->get('id')} created"), Response::HTTP_OK);
     }
 
-    public function putUserAction(Request $request)
+    public function patchStudentAction(Request $request)
     {
-
+        return new JsonResponse(array('message' => "Student #{$request->get('id')} updated"), Response::HTTP_OK);
     }
 
 

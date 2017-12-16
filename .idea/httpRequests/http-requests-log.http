@@ -1,3 +1,283 @@
+PATCH http://afterclasse.local/student?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013601.200.json
+
+###
+
+PUT http://afterclasse.local/student?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013556.200.json
+
+###
+
+POST http://afterclasse.local/student?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013551.405.html
+
+###
+
+POST http://afterclasse.local/student?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013549.405.html
+
+###
+
+GET http://afterclasse.local/student?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013544.200.json
+
+###
+
+GET http://afterclasse.local/students?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013537.200.json
+
+###
+
+GET http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013520.500.html
+
+###
+
+GET http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013334.200.json
+
+###
+
+POST http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013328.405.html
+
+###
+
+PATCH http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013317.405.html
+
+###
+
+PATCH http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013314.405.html
+
+###
+
+GET http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T013307.200.json
+
+###
+
+GET http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012438.200.json
+
+###
+
+PATCH http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012428.200.json
+
+###
+
+PATCH http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012319.200.json
+
+###
+
+PATCH http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012308.405.html
+
+###
+
+PUT http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012303.200.json
+
+###
+
+PUT http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012302.200.json
+
+###
+
+PUT http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012243.200.json
+
+###
+
+PUT http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012220.200.json
+
+###
+
+POST http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012211.405.html
+
+###
+
+DELETE http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012203.200.json
+
+###
+
+POST http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012148.405.html
+
+###
+
+DELETE http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012133.405.html
+
+###
+
+DELETE http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012132-2.405.html
+
+###
+
+DELETE http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012132-1.405.html
+
+###
+
+DELETE http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012132.405.html
+
+###
+
+DELETE http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012131.405.html
+
+###
+
+DELETE http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012113.405.html
+
+###
+
+PATCH http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012109.405.html
+
+###
+
+PUT http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012100.200.json
+
+###
+
+GET http://afterclasse.local/users?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012045.200.json
+
+###
+
+GET http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T012037.200.json
+
+###
+
+GET http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T011627.200.json
+
+###
+
+GET http://afterclasse.local/user?id=1
+Accept:*/*
+Cache-Control:no-cache
+
+<> 2017-12-16T011424.500.html
+
+###
+
 GET http://afterclasse.local/user?id=1
 Accept:*/*
 Cache-Control:no-cache
@@ -115,76 +395,6 @@ Accept:*/*
 Cache-Control:no-cache
 
 <> 2017-12-15T115545.404.html
-
-###
-
-GET http://afterclasse.local/users?sd=s
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115423.404.html
-
-###
-
-GET http://afterclasse.local/users?sd=s
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115418.404.html
-
-###
-
-GET http://afterclasse.local/users.6?sd=s
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115412.404.html
-
-###
-
-GET http://afterclasse.local/users?sd=s
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115407.404.html
-
-###
-
-PUT http://afterclasse.local/users?sd=s
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115350.404.html
-
-###
-
-POST http://afterclasse.local/users?sd=s
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115344.404.html
-
-###
-
-GET http://afterclasse.local/users?sd=s
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115323.404.html
-
-###
-
-GET http://afterclasse.local/users
-Accept:*/*
-Cache-Control:no-cache
-
-<> 2017-12-15T115256.404.html
-
-###
-
-GET http://http//afterclasse.local/users
-Accept:*/*
-Cache-Control:no-cache
 
 ###
 
