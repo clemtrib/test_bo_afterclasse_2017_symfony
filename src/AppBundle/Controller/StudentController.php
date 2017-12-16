@@ -4,12 +4,16 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Student;
 
 class StudentController extends Controller
 {
+
+    /**
+     * LIST
+     * @return Response
+     */
     public function getStudentsAction()
     {
 
@@ -29,10 +33,16 @@ class StudentController extends Controller
             );
         }
 
-        return new JsonResponse($formatted);
+        $response = $this->formatResponse($formatted);
+        return $response;
 
     }
 
+    /**
+     * VIEW
+     * @param Request $request
+     * @return Response
+     */
     public function getStudentAction(Request $request)
     {
 
@@ -41,37 +51,73 @@ class StudentController extends Controller
         $student = $repository->find($request->get('id'));
 
         if (empty($student)) {
-            return new JsonResponse(['message' => "Student #{$request->get('id')} not found"], Response::HTTP_NOT_FOUND);
+            $response = $this->formatResponse(['message' => "Student #{$request->get('id')} not found"], Response::HTTP_NOT_FOUND);
+            return $response;
         }
 
-        return new JsonResponse(array(
-            'id' => $student->getId(),
-            'firstname' => $student->getFirstname(),
-            'lastname' => $student->getLastname(),
-            'address1' => $student->getAddress1(),
-            'address2' => $student->getAddress2(),
-            'postcode' => $student->getPostcode(),
-            'city' => $student->getCity(),
-            'email' => $student->getEmail(),
-            'phone' => $student->getPhone()
-        ));
+        $response = $this->formatResponse(
+            array(
+                'id' => $student->getId(),
+                'firstname' => $student->getFirstname(),
+                'lastname' => $student->getLastname(),
+                'address1' => $student->getAddress1(),
+                'address2' => $student->getAddress2(),
+                'postcode' => $student->getPostcode(),
+                'city' => $student->getCity(),
+                'email' => $student->getEmail(),
+                'phone' => $student->getPhone()
+            )
+        );
+
+        return $response;
 
     }
 
+    /**
+     * DELETE A STUDENT
+     * @param Request $request
+     * @return Response
+     */
     public function deleteStudentAction(Request $request)
     {
-        return new JsonResponse(array('message' => "Student #{$request->get('id')} deleted"), Response::HTTP_OK);
+        $response = $this->formatResponse(array('message' => "Student #{$request->get('id')} deleted"));
+        return $response;
     }
 
+    /**
+     * CREATE A STUDENT
+     * @param Request $request
+     * @return Response
+     */
     public function putStudentAction(Request $request)
     {
-        return new JsonResponse(array('message' => "Student #{$request->get('id')} created"), Response::HTTP_OK);
+        $response = $this->formatResponse(array('message' => "Student #{$request->get('id')} created"));
+        return $response;
     }
 
+    /**
+     * UPDATE A STUDENT
+     * @param Request $request
+     * @return Response
+     */
     public function patchStudentAction(Request $request)
     {
-        return new JsonResponse(array('message' => "Student #{$request->get('id')} updated"), Response::HTTP_OK);
+        $response = $this->formatResponse(array('message' => "Student #{$request->get('id')} updated"));
+        return $response;
     }
 
+    /**
+     * SEND A JSON RESPONSE
+     * @param $msg
+     * @param null $status
+     * @return Response
+     */
+    private function formatResponse($msg, $status = null)
+    {
+        $response = new Response();
+        $response->setContent(json_encode($msg))->setStatusCode($status ?? Response::HTTP_OK);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+    }
 
 }
