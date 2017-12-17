@@ -28,6 +28,10 @@ class StudentController extends Controller
                 'id' => $student->getId(),
                 'firstname' => $student->getFirstname(),
                 'lastname' => $student->getLastname(),
+                'address1' => $student->getAddress1(),
+                'address2' => $student->getAddress2(),
+                'postcode' => $student->getPostcode(),
+                'city' => $student->getCity(),
                 'email' => $student->getEmail(),
                 'phone' => $student->getPhone()
             );
@@ -71,6 +75,29 @@ class StudentController extends Controller
 
         return $response;
 
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function optionsStudentAction(Request $request)
+    {
+        switch(strtoupper($request->get('Access-Control-Request-Method'))) {
+            case 'DELETE' :
+                $this->deleteStudentAction($request);
+                break;
+            case 'PUT' :
+                $this->putStudentAction($request);
+                break;
+            case 'PATCH' :
+                $this->patchStudentAction($request);
+                break;
+            default :
+                $response = $this->formatResponse(['message' => "Student #{$request->get('id')} not found"], Response::HTTP_NOT_FOUND);
+                return $response;
+                break;
+        }
     }
 
     /**
