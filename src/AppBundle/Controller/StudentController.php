@@ -96,7 +96,31 @@ class StudentController extends Controller
      */
     public function deleteStudentAction(Request $request)
     {
-        $response = $this->formatResponse(array('message' => "Student #{$request->get('id')} deleted"));
+        $content = (array)json_decode($request->getContent());
+
+        $repository = $this->getDoctrine()->getRepository(Student::class);
+
+        $student = $repository->find($content['id']);
+
+        if (empty($student)) {
+            $response = $this->formatResponse(['message' => "Student #{$content['id']} not found"], Response::HTTP_NOT_FOUND);
+            return $response;
+        }
+
+        try {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($student);
+            $em->flush();
+
+            $response = $this->formatResponse(array('message' => "Student #{$content['id']} deleted"));
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            error_log($e->getTraceAsString());
+            $response = $this->formatResponse(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+
         return $response;
     }
 
@@ -107,7 +131,18 @@ class StudentController extends Controller
      */
     public function putStudentAction(Request $request)
     {
-        $response = $this->formatResponse(array('message' => "Student #{$request->get('id')} created"));
+        try {
+            $student = new Student((array)json_decode($request->getContent()));
+            $student->setPassword(rand(1000, 999999));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($student);
+            $em->flush();
+            $response = $this->formatResponse(array('message' => "Student #{$student->getId()} created"));
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            error_log($e->getTraceAsString());
+            $response = $this->formatResponse(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         return $response;
     }
 
@@ -118,7 +153,32 @@ class StudentController extends Controller
      */
     public function patchStudentAction(Request $request)
     {
-        $response = $this->formatResponse(array('message' => "Student #{$request->get('id')} updated"));
+
+        $content = (array)json_decode($request->getContent());
+
+        $repository = $this->getDoctrine()->getRepository(Student::class);
+
+        $student = $repository->find($content['id']);
+
+        if (empty($student)) {
+            $response = $this->formatResponse(['message' => "Student #{$content['id']} not found"], Response::HTTP_NOT_FOUND);
+            return $response;
+        }
+
+        try {
+            $student->hydrate($content);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($student);
+            $em->flush();
+
+            $response = $this->formatResponse(array('message' => "Student #{$student->getId()} updated"));
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            error_log($e->getTraceAsString());
+            $response = $this->formatResponse(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
         return $response;
     }
 
@@ -133,13 +193,7 @@ class StudentController extends Controller
         $response = new Response();
         $response->setContent(json_encode($msg))->setStatusCode($status ?? Response::HTTP_OK);
         $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response->headers->set('Access-Control-Allow-Credentials', true);
-        $response->headers->set('Allow', '*');
-        $response->headers->set('Content-Type', 'application/json');
-        $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
-
-
         return $response;
     }
 

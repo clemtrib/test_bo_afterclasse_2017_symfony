@@ -310,5 +310,31 @@ class Student
     {
         return $this->password;
     }
+
+    /**
+     * @param array $values
+     */
+    public function __construct($values = array())
+    {
+        if (!empty($values)) {
+            $this->hydrate($values);
+        }
+    }
+
+    /**
+     * @param $data
+     */
+    public function hydrate($data)
+    {
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                $method = "set" . ucwords($key);
+                if (is_callable(array($this, $method))) {
+                    $this->$method($value);
+                }
+            }
+        }
+    }
+
 }
 
