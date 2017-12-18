@@ -78,27 +78,16 @@ class StudentController extends Controller
     }
 
     /**
+     *
      * @param Request $request
      * @return Response
      */
     public function optionsStudentAction(Request $request)
     {
-        switch(strtoupper($request->get('Access-Control-Request-Method'))) {
-            case 'DELETE' :
-                $this->deleteStudentAction($request);
-                break;
-            case 'PUT' :
-                $this->putStudentAction($request);
-                break;
-            case 'PATCH' :
-                $this->patchStudentAction($request);
-                break;
-            default :
-                $response = $this->formatResponse(['message' => "Student #{$request->get('id')} not found"], Response::HTTP_NOT_FOUND);
-                return $response;
-                break;
-        }
+        $response = $this->formatResponse(array('message' => ''));
+        return $response;
     }
+
 
     /**
      * DELETE A STUDENT
@@ -144,6 +133,13 @@ class StudentController extends Controller
         $response = new Response();
         $response->setContent(json_encode($msg))->setStatusCode($status ?? Response::HTTP_OK);
         $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Credentials', true);
+        $response->headers->set('Allow', '*');
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+
         return $response;
     }
 

@@ -3,5 +3,5 @@ app:
     type: annotation
 
 student:
-    resource: AppBundle\Controller\StudentController
+    resource: '@AppBundle/Controller/StudentController.php'
     type: rest
