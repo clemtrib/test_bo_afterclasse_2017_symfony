@@ -43,41 +43,6 @@ class StudentController extends Controller
     }
 
     /**
-     * VIEW
-     * @param Request $request
-     * @return Response
-     */
-    public function getStudentAction(Request $request)
-    {
-
-        $repository = $this->getDoctrine()->getRepository(Student::class);
-
-        $student = $repository->find($request->get('id'));
-
-        if (empty($student)) {
-            $response = $this->formatResponse(['message' => "Student #{$request->get('id')} not found"], Response::HTTP_NOT_FOUND);
-            return $response;
-        }
-
-        $response = $this->formatResponse(
-            array(
-                'id' => $student->getId(),
-                'firstname' => $student->getFirstname(),
-                'lastname' => $student->getLastname(),
-                'address1' => $student->getAddress1(),
-                'address2' => $student->getAddress2(),
-                'postcode' => $student->getPostcode(),
-                'city' => $student->getCity(),
-                'email' => $student->getEmail(),
-                'phone' => $student->getPhone()
-            )
-        );
-
-        return $response;
-
-    }
-
-    /**
      *
      * @param Request $request
      * @return Response

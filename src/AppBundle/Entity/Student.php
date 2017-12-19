@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="student")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StudentRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Student
 {
@@ -24,42 +25,42 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=128)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=128)
      */
     private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address1", type="string", length=255)
+     * @ORM\Column(name="address1", type="string", length=255, nullable=true)
      */
     private $address1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address2", type="string", length=255)
+     * @ORM\Column(name="address2", type="string", length=255, nullable=true)
      */
     private $address2;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="postcode", type="integer")
+     * @ORM\Column(name="postcode", type="string", length=5, nullable=true)
      */
     private $postcode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
@@ -71,19 +72,25 @@ class Student
     private $email;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="phone", type="integer")
+     * @ORM\Column(name="phone", type="string", length=10)
      */
     private $phone;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="created_at", type="datetime")
      */
-    private $password;
+    private $createdAt;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     /**
      * Get id
@@ -208,7 +215,7 @@ class Student
     /**
      * Get postcode
      *
-     * @return int
+     * @return string
      */
     public function getPostcode()
     {
@@ -248,7 +255,7 @@ class Student
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = mb_strtolower($email);
 
         return $this;
     }
@@ -280,7 +287,7 @@ class Student
     /**
      * Get phone
      *
-     * @return int
+     * @return string
      */
     public function getPhone()
     {
@@ -288,27 +295,49 @@ class Student
     }
 
     /**
-     * Set password
+     * Set createdAt
      *
-     * @param string $password
-     *
+     * @param \DateTime $createdAt
+     * @ORM\PrePersist
      * @return Student
      */
-    public function setPassword($password)
+    public function setCreatedAt()
     {
-        $this->password = $password;
-
+        $this->createdAt = new \DateTime();
         return $this;
     }
 
     /**
-     * Get password
+     * Get createdAt
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getPassword()
+    public function getCreatedAt()
     {
-        return $this->password;
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @ORM\PreUpdate
+     * @return Student
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
     /**
