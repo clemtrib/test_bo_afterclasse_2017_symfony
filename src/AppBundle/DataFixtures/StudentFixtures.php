@@ -16,21 +16,18 @@ class StudentFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-
         $students = array(
-            $this->prepare("Tribouillard", "Clement", "10 rue Charles Porcher"),
-            $this->prepare("Pierre", "David", "54 rue du Pérou"),
-            $this->prepare("Quetier", "Sylvie", "424 rue de grand champ"),
-            $this->prepare("Courtemanche", "Lea", "759 boulevard de la République"),
-            $this->prepare("Quetier", "Christophe", "22 rue Napoléon"),
-            $this->prepare("Rojas", "Johanna", "80 rue du 14 juillet")
+            $this->prepare("Mocquet", "Guy", "54 rue du Pérou"),
+            $this->prepare("Lennon", "John", "424 rue de grand champ"),
+            $this->prepare("Mitterand", "François", "10 rue Charles Porcher"),
+            $this->prepare("Moulin", "Jean", "759 boulevard de la République"),
+            $this->prepare("Churchill", "Winston", "22 rue Napoléon"),
+            $this->prepare("Camus", "Albert", "80 rue du 14 juillet")
         );
-
         foreach ($students as $student) {
             $manager->persist($student);
         }
         $manager->flush();
-
     }
 
     /**

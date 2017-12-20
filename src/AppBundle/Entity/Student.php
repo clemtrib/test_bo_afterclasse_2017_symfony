@@ -81,7 +81,7 @@ class Student
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     private $createdAt;
 
@@ -297,7 +297,6 @@ class Student
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
      * @ORM\PrePersist
      * @return Student
      */
@@ -320,7 +319,6 @@ class Student
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
      * @ORM\PreUpdate
      * @return Student
      */
